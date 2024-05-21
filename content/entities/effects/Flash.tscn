@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://duutggfgvxk7p"]
+
+[ext_resource type="Script" path="res://content/entities/effects/Flash.cs" id="1_x5k6r"]
+[ext_resource type="Texture2D" uid="uid://x4l724hx1ma7" path="res://content/gfx/effect_star_big.png" id="2_xur2t"]
+[ext_resource type="Shader" path="res://content/entities/effects/Flash.gdshader" id="3_evxy4"]
+[ext_resource type="Texture2D" uid="uid://cnamv5kmpxxnt" path="res://content/gfx/white.png" id="4_rapfb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kssrf"]
+shader = ExtResource("3_evxy4")
+shader_parameter/minRadius = null
+shader_parameter/maxRadius = 0.0
+
+[node name="Flash" type="Node2D" node_paths=PackedStringArray("Star", "Wave")]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_x5k6r")
+Star = NodePath("Star")
+Wave = NodePath("Wave")
+
+[node name="Star" type="Sprite2D" parent="."]
+texture = ExtResource("2_xur2t")
+
+[node name="Wave" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kssrf")
+scale = Vector2(128, 128)
+texture = ExtResource("4_rapfb")

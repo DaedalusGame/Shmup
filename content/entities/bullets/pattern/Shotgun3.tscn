@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cepefbplmc7m1"]
+
+[ext_resource type="Script" path="res://Code/BulletEmitter.cs" id="1_kc3l0"]
+[ext_resource type="PackedScene" uid="uid://byhrbt10h7pry" path="res://content/entities/bullets/BulletEnemy.tscn" id="2_sscsv"]
+[ext_resource type="Script" path="res://Code/Aim.cs" id="3_h3g4h"]
+
+[node name="Shotgun3" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_kc3l0")
+BulletPrefab = ExtResource("2_sscsv")
+ShootDelay = 0.1
+Subdivisions = 3
+AngleCenter = 10.0
+AngleOffset = 20.0
+Speed = 200.0
+MaxEmissions = 3
+OneShot = true
+
+[node name="Aim" type="Node2D" parent="."]
+script = ExtResource("3_h3g4h")
+AimEase = 1.0

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b86eer1byiuyv"]
+
+[ext_resource type="Texture2D" uid="uid://dq08206v43isl" path="res://content/gfx/effect_drip_strip5.png" id="1_wm6k8"]
+[ext_resource type="Script" path="res://Code/ParticleOneTime.cs" id="2_ljrgs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yfsm2"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Hit" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_yfsm2")
+emitting = false
+amount = 4
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+texture = ExtResource("1_wm6k8")
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 200.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+script = ExtResource("2_ljrgs")

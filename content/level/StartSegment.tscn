@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://barsxdkbp6cmc"]
+
+[ext_resource type="Script" path="res://Code/LevelSegment.cs" id="1_yhmh6"]
+[ext_resource type="Script" path="res://Code/BulletArea.cs" id="2_8kh5w"]
+[ext_resource type="PackedScene" uid="uid://bmhahminp2pdp" path="res://content/entities/bullets/Petal.tscn" id="3_lrk61"]
+
+[node name="StartSegment" type="Node2D"]
+script = ExtResource("1_yhmh6")
+Length = 400
+
+[node name="BulletArea" type="Node2D" parent="."]
+position = Vector2(0, -400)
+script = ExtResource("2_8kh5w")
+BulletPrefab = ExtResource("3_lrk61")
+Area = Rect2(-120, -20, 240, 20)
+BulletCount = 35
+MaxEmissions = 1

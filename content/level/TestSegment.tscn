@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://hus8qxpxrkud"]
+
+[ext_resource type="Script" path="res://Code/LevelSegment.cs" id="1_yw3a7"]
+[ext_resource type="PackedScene" uid="uid://ukndnrkgceca" path="res://content/entities/enemy/TestEnemy.tscn" id="2_etrjn"]
+[ext_resource type="PackedScene" uid="uid://ba5baxblhe4x3" path="res://content/entities/enemy/Hex.tscn" id="3_iwnds"]
+[ext_resource type="Script" path="res://Code/BulletEmitter.cs" id="4_gigoh"]
+[ext_resource type="PackedScene" uid="uid://bmhahminp2pdp" path="res://content/entities/bullets/Petal.tscn" id="5_bvv2k"]
+[ext_resource type="Texture2D" uid="uid://c8ds3yhd7yu83" path="res://content/gfx/effect_petal.png" id="6_rcrq7"]
+
+[node name="TestSegment" type="Node2D"]
+script = ExtResource("1_yw3a7")
+Length = 100
+
+[node name="TestEnemy" parent="." instance=ExtResource("2_etrjn")]
+process_mode = 4
+visible = false
+position = Vector2(-89, -29)
+
+[node name="Hex" parent="." instance=ExtResource("3_iwnds")]
+process_mode = 4
+visible = false
+position = Vector2(92, -26)
+HomingDuration = 0.0
+ChargeDuration = 0.0
+
+[node name="BulletEmitter" type="Node2D" parent="."]
+script = ExtResource("4_gigoh")
+BulletPrefab = ExtResource("5_bvv2k")
+ShootDelay = 0.1
+Subdivisions = 15
+AngleCenter = 90.0
+AngleOffset = 12.0
+Speed = 50.0
+MaxEmissions = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletEmitter"]
+texture = ExtResource("6_rcrq7")

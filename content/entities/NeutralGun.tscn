@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnw7111qay33d"]
+
+[ext_resource type="Script" path="res://content/entities/NeutralGun.cs" id="1_mjg23"]
+[ext_resource type="PackedScene" uid="uid://bk6jfkygpqrqp" path="res://content/entities/bullets/NeutralBullet.tscn" id="2_gxfvg"]
+[ext_resource type="PackedScene" uid="uid://dhw5m6ys7h7ol" path="res://content/entities/bullets/Blast.tscn" id="3_kxxt5"]
+
+[node name="NeutralGun" type="Node"]
+script = ExtResource("1_mjg23")
+BulletPrefab = ExtResource("2_gxfvg")
+BlastPrefab = ExtResource("3_kxxt5")
+ShootStartDelay = 0.1
+ShootDelay = 0.025
+BlastDelay = 0.15
+MuzzlePosition = Vector2(0, -8)

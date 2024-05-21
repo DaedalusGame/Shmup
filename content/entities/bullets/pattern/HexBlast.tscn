@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cebx5330784o1"]
+
+[ext_resource type="Script" path="res://Code/BulletEmitter.cs" id="1_6s1ug"]
+[ext_resource type="PackedScene" uid="uid://cggyhvc77tikk" path="res://content/entities/bullets/HexBlast.tscn" id="2_xohde"]
+
+[node name="BulletEmitter" type="Node2D"]
+script = ExtResource("1_6s1ug")
+BulletPrefab = ExtResource("2_xohde")
+Subdivisions = 1
+MaxEmissions = 1

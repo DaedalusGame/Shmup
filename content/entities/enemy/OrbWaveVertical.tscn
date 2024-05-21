@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7tydqklroulc"]
+
+[ext_resource type="PackedScene" uid="uid://fa562dyjg2pw" path="res://content/entities/enemy/Orb.tscn" id="1_0jym0"]
+
+[node name="OrbWaveVertical" instance=ExtResource("1_0jym0")]
+Velocity = Vector2(0, 10)
+WaveAmplitude = Vector2(32, 0)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca20eq5cro1jy"]
+
+[ext_resource type="PackedScene" uid="uid://bvycrbjqkrcwk" path="res://content/entities/enemy/Doll.tscn" id="1_0p7d8"]
+[ext_resource type="PackedScene" uid="uid://cepefbplmc7m1" path="res://content/entities/bullets/pattern/Shotgun3.tscn" id="2_mym7h"]
+
+[node name="Doll" instance=ExtResource("1_0p7d8")]
+BulletEmitterPrefab = ExtResource("2_mym7h")

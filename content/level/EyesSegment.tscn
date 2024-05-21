@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnqted3bh2ks6"]
+
+[ext_resource type="Script" path="res://Code/LevelSegment.cs" id="1_turrx"]
+[ext_resource type="PackedScene" uid="uid://ba5baxblhe4x3" path="res://content/entities/enemy/Hex.tscn" id="2_ru8rr"]
+
+[node name="EyesSegment" type="Node2D"]
+script = ExtResource("1_turrx")
+Length = 400
+
+[node name="Hex" parent="." instance=ExtResource("2_ru8rr")]
+position = Vector2(-80, -100)
+
+[node name="Hex2" parent="." instance=ExtResource("2_ru8rr")]
+position = Vector2(80, -300)

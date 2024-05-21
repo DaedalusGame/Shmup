@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://chke6q8lss1it"]
+
+[ext_resource type="Script" path="res://content/entities/Afterburner.cs" id="1_2wcfy"]
+[ext_resource type="Script" path="res://Code/Hitbox.cs" id="2_537w7"]
+[ext_resource type="Resource" uid="uid://yv3h0m2h6qpx" path="res://content/damagetypes/afterburner.tres" id="3_q5dji"]
+[ext_resource type="Texture2D" uid="uid://cvtaev7ppgrui" path="res://content/gfx/afterburner_strip4.png" id="4_1oxng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vbf3"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsq1f"]
+atlas = ExtResource("4_1oxng")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wssp"]
+atlas = ExtResource("4_1oxng")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irt6s"]
+atlas = ExtResource("4_1oxng")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luuck"]
+atlas = ExtResource("4_1oxng")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uct4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsq1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wssp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irt6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luuck")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Afterburner" type="Node2D"]
+script = ExtResource("1_2wcfy")
+Damage = 120.0
+Duration = 0.2
+
+[node name="HitboxLeft" type="Area2D" parent="."]
+position = Vector2(24, 16)
+script = ExtResource("2_537w7")
+DamageType = ExtResource("3_q5dji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxLeft"]
+shape = SubResource("RectangleShape2D_8vbf3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HitboxLeft"]
+sprite_frames = SubResource("SpriteFrames_uct4o")
+autoplay = "default"
+
+[node name="HitboxRight" type="Area2D" parent="."]
+position = Vector2(-24, 16)
+script = ExtResource("2_537w7")
+DamageType = ExtResource("3_q5dji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxRight"]
+shape = SubResource("RectangleShape2D_8vbf3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HitboxRight"]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_uct4o")
+autoplay = "default"

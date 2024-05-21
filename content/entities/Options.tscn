@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b12vkkiauji8a"]
+
+[ext_resource type="Script" path="res://content/entities/Options.cs" id="1_43qun"]
+[ext_resource type="PackedScene" uid="uid://5vonb2wmajmn" path="res://content/entities/OptionBall.tscn" id="2_ycnoj"]
+
+[node name="Options" type="Node"]
+script = ExtResource("1_43qun")
+OptionBallPrefab = ExtResource("2_ycnoj")
+PathDelay = 0.017
+PathOffset = 20
+SpawnDelay = 1.0

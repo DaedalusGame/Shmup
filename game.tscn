@@ -1,0 +1,28 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8ey3mlggo1mo"]
+
+[ext_resource type="PackedScene" uid="uid://c6bhllvvi7mgv" path="res://content/entities/Player.tscn" id="1_0mscv"]
+[ext_resource type="Script" path="res://Game.cs" id="1_ag2gb"]
+[ext_resource type="Script" path="res://MainCamera.cs" id="2_0ovpm"]
+[ext_resource type="Script" path="res://Code/LevelGenerator.cs" id="4_7r6et"]
+[ext_resource type="PackedScene" uid="uid://barsxdkbp6cmc" path="res://content/level/StartSegment.tscn" id="5_ojnl6"]
+[ext_resource type="PackedScene" uid="uid://benjoyokod4ds" path="res://content/level/EyesIntroSegment.tscn" id="6_d3sd3"]
+[ext_resource type="PackedScene" uid="uid://clt3hiray4sx4" path="res://content/level/OrbIntroSegment.tscn" id="6_w71pg"]
+[ext_resource type="PackedScene" uid="uid://dnamdjtmptjbp" path="res://content/level/OrbStreamSegment.tscn" id="8_uulq1"]
+[ext_resource type="PackedScene" uid="uid://cnqted3bh2ks6" path="res://content/level/EyesSegment.tscn" id="9_l22n0"]
+[ext_resource type="PackedScene" uid="uid://ywhv2ckitt4e" path="res://content/level/DollMidbossSegment.tscn" id="10_e40ky"]
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("Player", "Level")]
+script = ExtResource("1_ag2gb")
+Player = NodePath("Player")
+Level = NodePath("Level")
+
+[node name="Player" parent="." instance=ExtResource("1_0mscv")]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+ignore_rotation = false
+zoom = Vector2(2, 2)
+script = ExtResource("2_0ovpm")
+
+[node name="Level" type="Node2D" parent="."]
+script = ExtResource("4_7r6et")
+SegmentPrefabs = [ExtResource("5_ojnl6"), ExtResource("6_w71pg"), ExtResource("6_d3sd3"), ExtResource("8_uulq1"), ExtResource("9_l22n0"), ExtResource("10_e40ky")]

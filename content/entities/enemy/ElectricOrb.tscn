@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctc5myr08rsbs"]
+
+[ext_resource type="Script" path="res://Code/Enemy.cs" id="1_7gcw6"]
+[ext_resource type="PackedScene" uid="uid://bg183048tl330" path="res://content/entities/effects/Explosion.tscn" id="2_p1bht"]
+[ext_resource type="Script" path="res://Code/BulletCircle.cs" id="2_w5dte"]
+[ext_resource type="PackedScene" uid="uid://dthir0s33rour" path="res://content/entities/bullets/BulletInvisible.tscn" id="3_xu2p2"]
+[ext_resource type="Texture2D" uid="uid://d0dl4dr2fw6p8" path="res://content/gfx/enemy_orb_glass_strip3.png" id="5_pn3ju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf0do"]
+atlas = ExtResource("5_pn3ju")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssrwk"]
+atlas = ExtResource("5_pn3ju")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4knm"]
+atlas = ExtResource("5_pn3ju")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1n6id"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf0do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssrwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4knm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssrwk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ElectricOrb" type="Node2D"]
+script = ExtResource("1_7gcw6")
+HP = 3000.0
+DeathPrefab = ExtResource("2_p1bht")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1n6id")
+autoplay = "default"
+
+[node name="BulletCircle" type="Node2D" parent="."]
+script = ExtResource("2_w5dte")
+BallPrefab = ExtResource("3_xu2p2")
+Orbiters = 12
+Radius = 64.0
+RotationSpeed = 4.0

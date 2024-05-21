@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://5vonb2wmajmn"]
+
+[ext_resource type="Script" path="res://Code/Hurtbox.cs" id="1_6h2nj"]
+[ext_resource type="Script" path="res://content/entities/OptionBall.cs" id="1_um735"]
+[ext_resource type="PackedScene" uid="uid://bwwdh4mqc0dtx" path="res://content/entities/bullets/OptionBallBullet.tscn" id="2_10ql7"]
+[ext_resource type="Texture2D" uid="uid://dk81n0r6khjyl" path="res://content/gfx/bullet_glass_egg.png" id="3_8w5im"]
+[ext_resource type="Resource" uid="uid://bm8ojdc68lf5b" path="res://content/damagemasks/onlyBlast.tres" id="3_mhbr6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5tt3"]
+
+[node name="OptionBall" type="Node2D"]
+script = ExtResource("1_um735")
+BulletPrefab = ExtResource("2_10ql7")
+OutOfBoundsKill = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_8w5im")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("1_6h2nj")
+DamageMask = ExtResource("3_mhbr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_x5tt3")

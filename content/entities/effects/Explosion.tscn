@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg183048tl330"]
+
+[ext_resource type="Texture2D" uid="uid://ddg1psodvel0k" path="res://content/gfx/effect_smoke_strip6.png" id="1_4r2el"]
+[ext_resource type="Material" uid="uid://cwfnvshj8yt81" path="res://content/gfx/Explosion.tres" id="1_vxjrf"]
+[ext_resource type="Script" path="res://Code/ParticleOneTime.cs" id="2_lyss6"]
+
+[sub_resource type="Gradient" id="Gradient_dodjs"]
+offsets = PackedFloat32Array(0.206667, 0.466667, 0.766667)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.966667, 0, 1, 0.71, 0.0828333, 0, 1)
+
+[sub_resource type="Curve" id="Curve_pumoa"]
+_data = [Vector2(0, 0), 0.0, 4.03434, 0, 0, Vector2(0.550562, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Explosion" type="CPUParticles2D"]
+material = ExtResource("1_vxjrf")
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+lifetime_randomness = 0.52
+draw_order = 1
+texture = ExtResource("1_4r2el")
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 50.0
+angle_max = 360.0
+color_ramp = SubResource("Gradient_dodjs")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("Curve_pumoa")
+script = ExtResource("2_lyss6")

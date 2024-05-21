@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnamdjtmptjbp"]
+
+[ext_resource type="Script" path="res://Code/LevelSegment.cs" id="1_v0tp1"]
+[ext_resource type="Script" path="res://Code/EnemyEmitter.cs" id="2_06i7q"]
+[ext_resource type="PackedScene" uid="uid://b7tydqklroulc" path="res://content/entities/enemy/OrbWaveVertical.tscn" id="3_wmj4u"]
+[ext_resource type="PackedScene" uid="uid://1sixxrc3u14c" path="res://content/entities/enemy/OrbWaveVerticalMirror.tscn" id="4_f315q"]
+[ext_resource type="PackedScene" uid="uid://ca20eq5cro1jy" path="res://content/entities/enemy/DollShotgun3.tscn" id="4_l66xu"]
+
+[node name="OrbsIntroSegment" type="Node2D"]
+script = ExtResource("1_v0tp1")
+Length = 300
+
+[node name="OrbLeft" type="Node" parent="."]
+script = ExtResource("2_06i7q")
+EnemyPrefab = ExtResource("3_wmj4u")
+EmitDelay = 0.333
+Edge = 1
+Area = Rect2(-80, 0, 0, 0)
+
+[node name="OrbRight" type="Node" parent="."]
+script = ExtResource("2_06i7q")
+EnemyPrefab = ExtResource("4_f315q")
+EmitDelay = 0.333
+Edge = 1
+Area = Rect2(80, 0, 0, 0)
+
+[node name="EnemyEmitter2" type="Node" parent="."]
+script = ExtResource("2_06i7q")
+EnemyPrefab = ExtResource("4_l66xu")
+EmitDelay = 3.0
+Area = Rect2(-100, -200, 100, 100)

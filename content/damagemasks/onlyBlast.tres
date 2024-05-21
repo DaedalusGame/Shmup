@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DamageMask" load_steps=3 format=3 uid="uid://bm8ojdc68lf5b"]
+
+[ext_resource type="Resource" uid="uid://bcepdrv5j7lcf" path="res://content/damagetypes/blast.tres" id="1_rhjqq"]
+[ext_resource type="Script" path="res://Code/DamageMask.cs" id="2_nji0b"]
+
+[resource]
+script = ExtResource("2_nji0b")
+ResistTypes = Array[Object]([ExtResource("1_rhjqq")])
+ResistIsWeakness = true

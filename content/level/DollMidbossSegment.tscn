@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ywhv2ckitt4e"]
+
+[ext_resource type="Script" path="res://Code/LevelSegment.cs" id="1_7nvs5"]
+[ext_resource type="PackedScene" uid="uid://daytl6makf5kb" path="res://content/entities/enemy/DollMidboss.tscn" id="2_eb2ry"]
+
+[node name="EyesSegment" type="Node2D"]
+script = ExtResource("1_7nvs5")
+Length = 400
+
+[node name="Doll" parent="." instance=ExtResource("2_eb2ry")]
+position = Vector2(0, -70)

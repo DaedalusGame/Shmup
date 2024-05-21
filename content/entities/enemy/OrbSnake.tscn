@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce1bfjhpmu27r"]
+
+[ext_resource type="PackedScene" uid="uid://fa562dyjg2pw" path="res://content/entities/enemy/Orb.tscn" id="1_1hkal"]
+[ext_resource type="Script" path="res://Code/Trail.cs" id="2_4jv6t"]
+[ext_resource type="PackedScene" uid="uid://byhrbt10h7pry" path="res://content/entities/bullets/BulletEnemy.tscn" id="3_n5wke"]
+
+[node name="OrbSnake" instance=ExtResource("1_1hkal")]
+Velocity = Vector2(0, 20)
+WaveAmplitude = Vector2(120, 32)
+WaveParams = Vector2(0.2, 0.3)
+
+[node name="Trail" type="Node2D" parent="." index="3"]
+script = ExtResource("2_4jv6t")
+OptionBallPrefab = ExtResource("3_n5wke")
+PathDelay = 0.017

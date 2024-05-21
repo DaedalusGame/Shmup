@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://daytl6makf5kb"]
+
+[ext_resource type="PackedScene" uid="uid://bvycrbjqkrcwk" path="res://content/entities/enemy/Doll.tscn" id="1_w2qtn"]
+
+[node name="Doll" instance=ExtResource("1_w2qtn")]
+Velocity = Vector2(0, 0)
+CompensateScroll = true
+DisappearOffset = Vector2(300, -100)
+AttackCount = 3
+HP = 1000.0

@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://ba5baxblhe4x3"]
+
+[ext_resource type="Script" path="res://content/entities/enemy/EnemyHex.cs" id="1_scp71"]
+[ext_resource type="PackedScene" uid="uid://duutggfgvxk7p" path="res://content/entities/effects/Flash.tscn" id="2_6pt8r"]
+[ext_resource type="Texture2D" uid="uid://bbvq43y2djii" path="res://content/gfx/enemy_eye_strip2.png" id="2_lha0e"]
+[ext_resource type="Texture2D" uid="uid://c48xt0crw0mk5" path="res://content/gfx/effect_fire_strip4.png" id="3_343sp"]
+[ext_resource type="Script" path="res://content/entities/enemy/CurseMarker.cs" id="3_u86cq"]
+[ext_resource type="PackedScene" uid="uid://cebx5330784o1" path="res://content/entities/bullets/pattern/HexBlast.tscn" id="4_ee6uc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3jsyy"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_nwkye"]
+_data = [Vector2(0, 0), 0.0, 12.0623, 0, 0, Vector2(0.213483, 1), 0.0232864, 0.0, 0, 0, Vector2(0.870787, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -27.3847, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_6q3ng"]
+offsets = PackedFloat32Array(0.146667, 1)
+colors = PackedColorArray(0.65, 0.346667, 0, 1, 0.434145, 0.0538978, 2.40654e-08, 1)
+
+[node name="Hex" type="Node2D" node_paths=PackedStringArray("Eye", "Marker")]
+script = ExtResource("1_scp71")
+Eye = NodePath("Eye/Iris")
+Marker = NodePath("CurseMarker")
+SparklePrefab = ExtResource("2_6pt8r")
+HomingDuration = 1.0
+ChargeDuration = 1.4
+RestDuration = 0.5
+
+[node name="Eye" type="Sprite2D" parent="."]
+texture = ExtResource("2_lha0e")
+hframes = 2
+
+[node name="Iris" type="Sprite2D" parent="Eye"]
+texture = ExtResource("2_lha0e")
+hframes = 2
+frame = 1
+
+[node name="CurseMarker" type="Node2D" parent="." node_paths=PackedStringArray("Particles")]
+top_level = true
+script = ExtResource("3_u86cq")
+EmitterPrefab = ExtResource("4_ee6uc")
+Particles = NodePath("CPUParticles2D")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CurseMarker"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_3jsyy")
+emitting = false
+amount = 4
+lifetime = 0.4
+local_coords = true
+draw_order = 1
+texture = ExtResource("3_343sp")
+emission_shape = 1
+emission_sphere_radius = 7.0
+gravity = Vector2(0, 0)
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_nwkye")
+color_ramp = SubResource("Gradient_6q3ng")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+anim_offset_max = 1.0

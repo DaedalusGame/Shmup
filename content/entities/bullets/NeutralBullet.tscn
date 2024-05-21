@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk6jfkygpqrqp"]
+
+[ext_resource type="Script" path="res://Code/Bullet.cs" id="1_237x6"]
+[ext_resource type="Texture2D" uid="uid://dpcprolf1l2p1" path="res://content/gfx/effect_neutral.png" id="2_g7gr8"]
+[ext_resource type="Script" path="res://Code/Hitbox.cs" id="3_8vodf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w8fd"]
+radius = 4.0
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_237x6")
+Damage = 40.0
+ImpactKill = true
+RotationOffset = 0.25
+AlignRotation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_g7gr8")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_8vodf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_3w8fd")

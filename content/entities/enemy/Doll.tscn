@@ -1,0 +1,139 @@
+[gd_scene load_steps=19 format=3 uid="uid://bvycrbjqkrcwk"]
+
+[ext_resource type="Script" path="res://content/entities/enemy/Doll.cs" id="1_13r2p"]
+[ext_resource type="PackedScene" uid="uid://iao7vhvgcwvj" path="res://content/entities/bullets/pattern/8Fold.tscn" id="2_erstr"]
+[ext_resource type="PackedScene" uid="uid://bg183048tl330" path="res://content/entities/effects/Explosion.tscn" id="2_ifkra"]
+[ext_resource type="PackedScene" uid="uid://duutggfgvxk7p" path="res://content/entities/effects/Flash.tscn" id="2_wtkk8"]
+[ext_resource type="Texture2D" uid="uid://dmoxui803kwjs" path="res://content/gfx/enemy_doll_strip5.png" id="3_0w0k2"]
+[ext_resource type="Texture2D" uid="uid://h2qebr5ksvp5" path="res://content/gfx/enemy_doll_swipe_strip3.png" id="4_hbqxv"]
+[ext_resource type="Script" path="res://Code/Hurtbox.cs" id="5_b5njs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn7h1"]
+atlas = ExtResource("3_0w0k2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3aww"]
+atlas = ExtResource("3_0w0k2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8lfb"]
+atlas = ExtResource("3_0w0k2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cteme"]
+atlas = ExtResource("3_0w0k2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fneoj"]
+atlas = ExtResource("3_0w0k2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6il65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn7h1")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3aww")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8lfb")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cteme")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fneoj")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehpas"]
+atlas = ExtResource("4_hbqxv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eid8i"]
+atlas = ExtResource("4_hbqxv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ij7n"]
+atlas = ExtResource("4_hbqxv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhbuk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehpas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eid8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ij7n")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kk5kg"]
+radius = 12.0
+
+[node name="Doll" type="Node2D" node_paths=PackedStringArray("Body", "Swipe")]
+script = ExtResource("1_13r2p")
+Body = NodePath("Body")
+Swipe = NodePath("Swipe")
+BulletEmitterPrefab = ExtResource("2_erstr")
+SparklePrefab = ExtResource("2_wtkk8")
+SparkleMuzzle = Vector2(4, -4)
+AppearOffset = Vector2(-300, -100)
+AppearDuration = 1.0
+Velocity = Vector2(40, -40)
+DisappearOffset = Vector2(-300, -100)
+DisappearDuration = 1.0
+AttackDelay = 0.5
+ChargeDelay = 0.5
+RestDelay = 0.5
+HP = 400.0
+DeathPrefab = ExtResource("2_ifkra")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6il65")
+
+[node name="Swipe" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_jhbuk")
+autoplay = "default"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("5_b5njs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_kk5kg")

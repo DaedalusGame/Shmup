@@ -1,0 +1,149 @@
+[gd_scene load_steps=26 format=3 uid="uid://c6bhllvvi7mgv"]
+
+[ext_resource type="Script" path="res://content/entities/Player.cs" id="1_7fcxb"]
+[ext_resource type="PackedScene" uid="uid://bbs8iu0wxcula" path="res://content/entities/Bullet.tscn" id="2_qy0jo"]
+[ext_resource type="PackedScene" uid="uid://chke6q8lss1it" path="res://content/entities/Afterburner.tscn" id="3_ja3d0"]
+[ext_resource type="Texture2D" uid="uid://iu12os5u7ya6" path="res://content/gfx/player_body_strip3.png" id="4_vjnvi"]
+[ext_resource type="Script" path="res://content/entities/PlayerBody.cs" id="5_5jk8l"]
+[ext_resource type="PackedScene" uid="uid://b12vkkiauji8a" path="res://content/entities/Options.tscn" id="5_67e3u"]
+[ext_resource type="Texture2D" uid="uid://de6uruuu8k8ge" path="res://content/gfx/player_hair_strip3.png" id="5_f0hkh"]
+[ext_resource type="Script" path="res://Code/Hurtbox.cs" id="6_5stxt"]
+[ext_resource type="PackedScene" uid="uid://bnw7111qay33d" path="res://content/entities/NeutralGun.tscn" id="6_jh5u5"]
+[ext_resource type="Shader" path="res://content/entities/Rainbow.gdshader" id="6_vky3u"]
+[ext_resource type="Texture2D" uid="uid://c372ejlagw06s" path="res://content/gfx/player_wings.png" id="7_n0jh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbx7d"]
+atlas = ExtResource("4_vjnvi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v3uw"]
+atlas = ExtResource("4_vjnvi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kp4v"]
+atlas = ExtResource("4_vjnvi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72ye6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbx7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v3uw")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kp4v")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00wb1"]
+atlas = ExtResource("5_f0hkh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr562"]
+atlas = ExtResource("5_f0hkh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g12nt"]
+atlas = ExtResource("5_f0hkh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ho7h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00wb1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr562")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g12nt")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1hn7h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b7dpu"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_1hn7h")
+
+[sub_resource type="Gradient" id="Gradient_e4iu4"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.204918, 0.393443, 0.606557, 0.803279, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0.0666666, 1, 0, 1, 0, 0.7, 1, 1, 0.7, 0, 0.665, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_okj3g"]
+gradient = SubResource("Gradient_e4iu4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hw5nu"]
+shader = ExtResource("6_vky3u")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_b7dpu")
+shader_parameter/ramp_tex = SubResource("GradientTexture1D_okj3g")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2srm"]
+radius = 3.0
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("PlayerBody")]
+script = ExtResource("1_7fcxb")
+BulletPrefab = ExtResource("2_qy0jo")
+AfterBurnerPrefab = ExtResource("3_ja3d0")
+PlayerBody = NodePath("Body")
+Velocity = Vector2(100, 100)
+ShootDelay = 0.117
+AfterBurnerStart = 0.2
+AfterBurnerDelay = 0.1
+
+[node name="Body" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("Hair", "Wings")]
+sprite_frames = SubResource("SpriteFrames_72ye6")
+script = ExtResource("5_5jk8l")
+Hair = NodePath("Hair")
+Wings = NodePath("Wings")
+WingFlapDuration = 0.1
+
+[node name="Hair" type="AnimatedSprite2D" parent="Body"]
+modulate = Color(1, 0.705831, 0.722797, 1)
+sprite_frames = SubResource("SpriteFrames_4ho7h")
+
+[node name="Wings" type="Sprite2D" parent="Body"]
+material = SubResource("ShaderMaterial_hw5nu")
+texture = ExtResource("7_n0jh3")
+
+[node name="Options" parent="." instance=ExtResource("5_67e3u")]
+
+[node name="NeutralGun" parent="." instance=ExtResource("6_jh5u5")]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("6_5stxt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_q2srm")

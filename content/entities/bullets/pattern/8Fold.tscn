@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://iao7vhvgcwvj"]
+
+[ext_resource type="Script" path="res://Code/BulletEmitter.cs" id="1_dv3id"]
+[ext_resource type="PackedScene" uid="uid://byhrbt10h7pry" path="res://content/entities/bullets/BulletEnemy.tscn" id="2_0ot2j"]
+
+[node name="8Fold" type="Node2D"]
+script = ExtResource("1_dv3id")
+BulletPrefab = ExtResource("2_0ot2j")
+ShootDelay = 0.2
+Subdivisions = 8
+AngleOffset = 45.0
+AngleRotation = 0.5
+Speed = 100.0
+MaxEmissions = 2
+OneShot = true

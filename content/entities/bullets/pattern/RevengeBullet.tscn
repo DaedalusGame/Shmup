@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://fmv5ebo07c2"]
+
+[ext_resource type="Script" path="res://Code/BulletEmitter.cs" id="1_q1laj"]
+[ext_resource type="PackedScene" uid="uid://byhrbt10h7pry" path="res://content/entities/bullets/BulletEnemy.tscn" id="2_8dtal"]
+[ext_resource type="Script" path="res://Code/Aim.cs" id="3_6dy0u"]
+[ext_resource type="PackedScene" uid="uid://xsaw0lyosddi" path="res://content/entities/effects/GlassExplosion.tscn" id="4_o8jks"]
+
+[node name="RevengeBullet" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_q1laj")
+BulletPrefab = ExtResource("2_8dtal")
+ShootDelay = 0.1
+Subdivisions = 3
+AngleCenter = 10.0
+AngleOffset = 20.0
+Speed = 200.0
+MaxEmissions = 3
+OneShot = true
+
+[node name="Aim" type="Node2D" parent="."]
+script = ExtResource("3_6dy0u")
+AimEase = 1.0
+
+[node name="GlassExplosion" parent="." instance=ExtResource("4_o8jks")]
+Detach = true

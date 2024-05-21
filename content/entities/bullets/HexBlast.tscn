@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://cggyhvc77tikk"]
+
+[ext_resource type="Script" path="res://Code/Bullet.cs" id="1_d5wyw"]
+[ext_resource type="Texture2D" uid="uid://vydq8bgvjgi3" path="res://content/gfx/effect_moon_big_strip6.png" id="2_bwj30"]
+[ext_resource type="Script" path="res://Code/Hitbox.cs" id="3_blfoo"]
+[ext_resource type="Resource" uid="uid://xjyd21jfly7k" path="res://content/damagetypes/hit.tres" id="4_v3isl"]
+[ext_resource type="Texture2D" uid="uid://cmfa2qnen75pd" path="res://content/gfx/effect_flame_large_strip8.png" id="5_n1j54"]
+[ext_resource type="Script" path="res://Code/ParticleOneTime.cs" id="6_vs0wu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nvne"]
+atlas = ExtResource("2_bwj30")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pka1o"]
+atlas = ExtResource("2_bwj30")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyv7r"]
+atlas = ExtResource("2_bwj30")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v43o"]
+atlas = ExtResource("2_bwj30")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4alw"]
+atlas = ExtResource("2_bwj30")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8awi4"]
+atlas = ExtResource("2_bwj30")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6abb0"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_0nvne")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_pka1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyv7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v43o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4alw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8awi4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brg7l"]
+radius = 16.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qfm0v"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="HexBlast" type="Node2D"]
+script = ExtResource("1_d5wyw")
+Duration = 0.2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6abb0")
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_blfoo")
+DamageType = ExtResource("4_v3isl")
+MaxTime = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_brg7l")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_qfm0v")
+position = Vector2(-1, 1)
+emitting = false
+amount = 6
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.5
+lifetime_randomness = 0.1
+draw_order = 1
+texture = ExtResource("5_n1j54")
+emission_shape = 2
+emission_sphere_radius = 16.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+script = ExtResource("6_vs0wu")
+Detach = true
